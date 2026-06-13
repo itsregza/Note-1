@@ -83,8 +83,6 @@ Session mode is for people running **Monitor Feed + login** who don’t want to 
 
 If checkout fails because the item is OOS or the SKU got pulled, it clears that product and goes back to waiting for the next ping. Session stays up.
 
-Session mode needs a real account in `accounts.csv`. Catchall / gen-on-the-fly signup isn’t used here.
-
 ---
 
 ## Hamleys FRONTEND vs SESSION
