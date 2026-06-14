@@ -1,14 +1,10 @@
 # Monitor Feed + Hamleys Session Mode
 
-Quick guide for Miniso and Hamleys tasks that wait on restocks instead of checking one product URL.
-
----
-
 ## What is Monitor Feed?
 
 Normally you put a product URL in the task and the bot watches that item (or runs checkout straight away).
 
-**Monitor Feed** is different. You give the task **keywords** instead of a URL. The task sits there waiting until our monitors pick something up that matches — then it runs checkout on that product.
+**Monitor Feed** is different. You give the task **keywords** instead of a URL. The task sits there waiting until my monitors (in HQ) pick something up that matches — then it runs checkout on that product.
 
 You’ll see pings in the **Monitor Feed** window in the GUI when monitors fire. Your checkout tasks listen for those same pings.
 
@@ -64,12 +60,12 @@ Keywords required. No product URL in the task row.
 
 ## Hamleys Session Mode
 
-Session mode is for people running **Monitor Feed + login** who don’t want to log in again on every ping.
+Session mode is just for hamleys and it keeps task logged in.
 
 **What you need on the task:**
 
 - Mode: **SESSION**
-- Monitor Feed: **on** (turns on automatically when you pick Session)
+- Monitor Feed: **on** 
 - Login: **on**
 - Account: an email from your `accounts.csv` (saved account — not catchall signup)
 - Keywords: your filter
@@ -80,8 +76,6 @@ Session mode is for people running **Monitor Feed + login** who don’t want to 
 1. Task logs in once with your saved account
 2. Sits on the monitor feed, keeping the session alive (checks every ~20 seconds — you won’t see spam in the logs unless something breaks)
 3. When a restock matches, it uses that **same logged-in session** to checkout — no fresh login each time
-
-If checkout fails because the item is OOS or the SKU got pulled, it clears that product and goes back to waiting for the next ping. Session stays up.
 
 ---
 
