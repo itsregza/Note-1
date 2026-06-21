@@ -91,7 +91,7 @@ NORMAL,true,pokemon,151,-damaged,,1,MyProfile,card,,false,,,
 | payment_type | `card` |
 | catchall | Only if `login=true` and you want a random email — e.g. `@yourdomain.com` |
 | account | Email from `sites/hamleys/accounts.csv` (if logging in) |
-| login | `true` to use a saved account, `false` for guest checkout | - they always turn login on for pokemon
+| login | `true` to use a saved account, `false` for guest checkout |
 | imap | Leave blank unless you know you need it - for catchall. |
 | proxy_file | Leave blank for default proxies, or e.g. `resis` |
 
@@ -107,4 +107,13 @@ FRONTEND,true,lego,harry potter,,1,MyProfile,card,,user@email.com,true,,
 ```csv
 mode,monitor_feed,keywords,product_url,quantity,profile_name,payment_type,catchall,account,login,imap,proxy_file
 FRONTEND,true,lego,harry potter,,1,MyProfile,card,,,false,,
+```
+
+**SESSION (Pokémon drops)**
+
+Set `mode` to `SESSION`. Monitor feed turns on automatically. Same add-to-cart and checkout as FRONTEND — account is logged in before the feed ping. Use `login=true` and an account from `accounts.csv`.
+
+```csv
+mode,monitor_feed,keywords,product_url,quantity,profile_name,payment_type,catchall,account,login,imap,proxy_file
+SESSION,true,+pokemon,+booster,,1,MyProfile,card,,user@email.com,true,,
 ```
