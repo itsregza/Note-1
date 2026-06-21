@@ -19,10 +19,7 @@ This is **not** the same as **Monitor Mode** (that one watches specific product 
 
 ## How to turn on monitor feed
 
-Use **one** of these in each task row:
-
 - Set `monitor_feed` to `true`
-- Or set `mode` to `MONITOR_FEED`
 
 Leave `product_url` **empty** — the feed fills that in when a match comes through.
 
@@ -36,15 +33,8 @@ Comma-separated words matched against the product name from the feed.
 
 | What you type | What it does |
 |---|---|
-| `pokemon,booster` | Product name must contain both words |
+| `+pokemon,+booster` | Product name must contain both words |
 | `-damaged` | Skip anything with "damaged" in the name |
-| `labubu,+secret` | Same as normal words — `+` is optional |
-
-Examples:
-
-- `pokemon,151,-damaged`
-- `labubu,secret`
-- `harry potter,lego`
 
 ---
 
@@ -60,27 +50,23 @@ Examples:
 
 | Column | What to put |
 |---|---|
-| mode | `NORMAL` (or `MONITOR_FEED`) |
+| mode | `NORMAL` |
 | monitor_feed | `true` |
 | keywords | Your keyword filter (see above) |
 | product_url | Leave blank |
 | quantity | How many to buy (usually `1`) |
 | profile_name | Name from `profiles.csv` |
 | payment_type | `card` |
-| account | Email from `sites/miniso/accounts.csv` | only needed for hamleys
-| accountmode | `true` = logged-in account checkout. `false` = guest checkout (no account needed) | account only needed for hamleys
-| preload | Leave blank for normal monitor feed |
-| dummy | Leave blank |
-| proxy_file | Leave blank for default proxies, or e.g. `proxies.txt` |
+| preload | true/false |
+| dummy | dmmpy pid if using preload mode |
+| proxy_file | Leave blank for default proxies, or e.g. `resis` |
 
 **Example row:**
 
 ```csv
 mode,monitor_feed,keywords,product_url,quantity,profile_name,payment_type,account,accountmode,preload,dummy,proxy_file
-NORMAL,true,pokemon,151,-damaged,,1,MyProfile,paypal,user@email.com,true,,,
+NORMAL,true,pokemon,151,-damaged,,1,MyProfile,card,,false,,,
 ```
-
-If using guest checkout, set `accountmode` to `false` and leave `account` blank.
 
 ---
 
@@ -96,7 +82,7 @@ If using guest checkout, set `accountmode` to `false` and leave `account` blank.
 
 | Column | What to put |
 |---|---|
-| mode | `NORMAL` (or `MONITOR_FEED`) |
+| mode | `FRONTEND`  |
 | monitor_feed | `true` |
 | keywords | Your keyword filter |
 | product_url | Leave blank |
@@ -105,20 +91,20 @@ If using guest checkout, set `accountmode` to `false` and leave `account` blank.
 | payment_type | `card` |
 | catchall | Only if `login=true` and you want a random email — e.g. `@yourdomain.com` |
 | account | Email from `sites/hamleys/accounts.csv` (if logging in) |
-| login | `true` to use a saved account, `false` for guest checkout |
-| imap | Leave blank unless you know you need it |
-| proxy_file | Leave blank for default proxies |
+| login | `true` to use a saved account, `false` for guest checkout | - they always turn login on for pokemon
+| imap | Leave blank unless you know you need it - for catchall. |
+| proxy_file | Leave blank for default proxies, or e.g. `resis` |
 
 **Example — logged in:**
 
 ```csv
 mode,monitor_feed,keywords,product_url,quantity,profile_name,payment_type,catchall,account,login,imap,proxy_file
-NORMAL,true,lego,harry potter,,1,MyProfile,card,,user@email.com,true,,
+FRONTEND,true,lego,harry potter,,1,MyProfile,card,,user@email.com,true,,
 ```
 
 **Example — guest checkout:**
 
 ```csv
 mode,monitor_feed,keywords,product_url,quantity,profile_name,payment_type,catchall,account,login,imap,proxy_file
-NORMAL,true,lego,harry potter,,1,MyProfile,card,,,false,,
+FRONTEND,true,lego,harry potter,,1,MyProfile,card,,,false,,
 ```
